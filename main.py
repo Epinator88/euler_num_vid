@@ -52,7 +52,14 @@ class IntroToE(Scene):
         self.play(Write(comp))
         self.play(FadeOut(comp), FadeOut(lesson))
         self.clear()
-
+        yearly = MathTex("A = P(1 + r)^t", color=BLUE, font_size=48)
+        monthly = MathTex("A = P(1 + \\frac{r}{12})^{12t}", color=RED, font_size=48)
+        continuous = MathTex("A = Pe^{rt}", color=GREEN, font_size=48)
+        yearly.next_to(monthly, UP)
+        continuous.next_to(monthly, DOWN)
+        monthly.shift(DOWN * 0.1)
+        self.play(Write(yearly), Succession(Wait(0.5), Write(monthly)), Succession(Wait(1), Write(continuous)))
+        self.play(FadeOut(monthly, shift = DOWN * 3), FadeOut(continuous, shift = DOWN * 3), yearly.animate.center())
 
 
 
