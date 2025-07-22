@@ -1,5 +1,7 @@
 from manim import *
 
+# YOU NEEEEEEEEEEEED TO ADD THE SELF.WAITS()
+
 class IntroToE(Scene):
 
     def construct(self):
@@ -73,11 +75,13 @@ class IntroToE(Scene):
         self.play(yearly[4].animate.set_color(BLUE))
         self.play(yearly[6].animate.set_color(YELLOW))
         self.play(yearly[6].animate.set_color(BLUE))
+        monthly.center()
         self.play(ReplacementTransform(yearly, monthly))
         self.play(monthly[1].animate.set_color(YELLOW))
         self.play(monthly[1].animate.set_color(RED))
         self.play(monthly[3].animate.set_color(YELLOW))
         self.play(monthly[3].animate.set_color(RED))
+        continuous.center()
         self.play(ReplacementTransform(monthly, continuous))
         tex1 = Text("Hourly?", font_size=48, color=YELLOW).shift(UP)
         tex2 = Text("Secondly?", font_size=48, color=YELLOW).next_to(tex1, DOWN * 1)
@@ -88,16 +92,17 @@ class IntroToE(Scene):
         self.play(tex3.animate.center())
         self.play(Circumscribe(tex3))
         self.play(ReplacementTransform(tex3, continuous))
-        self.play(yearly[1].animate.set_color(YELLOW))
-        self.play(yearly[1].animate.set_color(GREEN))
-        self.play(yearly[2].animate.set_color(YELLOW))
-        self.play(yearly[2].animate.set_color(GREEN))
-        self.play(yearly[5].animate.set_color(YELLOW))
-        self.play(yearly[5].animate.set_color(GREEN))
-        big_euler = MathTex("e", " = ", "2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945729725726", color=YELLOW, font_size=48)
+        self.play(continuous[1].animate.set_color(YELLOW))
+        self.play(continuous[1].animate.set_color(GREEN))
+        self.play(continuous[2].animate.set_color(YELLOW))
+        self.play(continuous[2].animate.set_color(GREEN))
+        self.play(continuous[4].animate.set_color(YELLOW))
+        self.play(continuous[4].animate.set_color(GREEN))
+        big_euler = MathTex("e", " = ", "2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945729725726", color=YELLOW, font_size=144)
         big_euler.next_to(continuous, RIGHT)
-        big_euler.shift(LEFT * 4)
-        self.play(Write(big_euler), FadeOut(continuous, scale = 0))
+        big_euler.shift(LEFT * 2)
+        self.play(FadeOut(continuous, scale = 0.1))
+        self.play(Write(big_euler), Succession(Wait(2), big_euler.shift(LEFT * 20)), run_time = 6)
 
 
         # end first paragraph, segue into origin of e
