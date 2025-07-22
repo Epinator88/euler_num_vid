@@ -102,7 +102,7 @@ class IntroToE(Scene):
         big_euler.next_to(continuous, RIGHT)
         big_euler.shift(LEFT * 2)
         self.play(FadeOut(continuous, scale = 0.1))
-        self.play(Write(big_euler), Succession(Wait(2), big_euler.shift(LEFT * 20)), run_time = 6)
+        self.play(Write(big_euler), Succession(Wait(2), big_euler.animate.shift(LEFT * 20)), run_time = 6)
 
 
         # end first paragraph, segue into origin of e
