@@ -100,9 +100,10 @@ class IntroToE(Scene):
         self.play(continuous[4].animate.set_color(GREEN))
         big_euler = MathTex("e", " = ", "2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945729725726", color=YELLOW, font_size=144)
         big_euler.next_to(continuous, RIGHT)
-        big_euler.shift(LEFT * 2)
+        big_euler.shift(LEFT * 2.2) #NIIIIIIIIIIIICHE GEOMETRY DASH REFERENCE
         self.play(FadeOut(continuous, scale = 0.1))
-        self.play(Write(big_euler), Succession(Wait(0.5), big_euler.animate.shift(LEFT * 75), run_time = 4), run_time = 2)
+        self.play(Write(big_euler), run_time = 4)
+        self.play(big_euler.animate.shift(LEFT * 100), run_time = 6)
 
 
         # end first paragraph, segue into origin of e
