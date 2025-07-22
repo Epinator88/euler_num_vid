@@ -110,3 +110,10 @@ class IntroToE(Scene):
 
 
         self.wait(2) #so that i can actually see the end of the animation oh my god
+
+class EulerIntro(Scene):
+
+    def construct(self):
+        euler = Text("e", font_size=720, color=WHITE)
+        self.play(Write(euler))
+        
