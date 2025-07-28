@@ -138,18 +138,45 @@ class EulerFoundations(Scene):
         self.play(Unwrite(euler))
         blatant = Text("e comes from Interest", t2c={"Interest": YELLOW})
         self.play(FadeIn(blatant))
-        barebones = MathTex(r"1", r"(1 + ", r"1", r")^", r"{t}")
+        barebones = MathTex(r"1", r"(1 + 1)^{t}")
         self.play(FadeOut(blatant, scale = 0.1))
         self.play(Write(barebones))
         self.wait(1)
         barebones2 = barebones.copy()
         self.add(barebones2)
         self.play(barebones2.animate.shift(UP * 3))
-        self.play(FadeOut(barebones[0]))
-        self.play(barebones.animate.center())
+        self.play(FadeOut(barebones[0]), barebones[1].animate.center())
         true = MathTex(r"2^t")
-        self.play(Transform(barebones, true))
-        self.play(FadeOut(barebones), )
+        self.play(Transform(barebones[1], true))
+        self.play(FadeOut(barebones[1]))
+        monthly = MathTex(r"(1 + ", r"\frac{1}{12}", r")^{12t}")
+        monthlyCopy = monthly.copy().shift(UP * 3)
+        barebones3 = barebones2.copy()
+        self.add(barebones3)
+        self.play(ReplacementTransform(barebones3, monthly), ReplacementTransform(barebones2, monthlyCopy))
+        calcMonthly = MathTex(r"(1 + ", r".083", r")^{12t}")
+        self.play(TransformMatchingTex(monthly, calcMonthly))
+        calcMonthly2 = MathTex(r"(1 + ", r".083", r")^{12}")
+        calcMonthly3 = MathTex(r"2.6130")
+        self.play(TransformMatchingTex(calcMonthly, calcMonthly2))
+        self.play(ReplacementTransform(calcMonthly2, calcMonthly3))
+        daily = MathTex(r"(1 + ", r"\frac{1}{365})^", r"{365t}", r" = 2.71...")
+        daily[3].set_color(BLACK)
+        self.play(TransformMatchingTex(monthlyCopy, daily), FadeOut(calcMonthly3))
+        self.play(daily[3].animate.set_color(WHITE))
+        secondly = MathTex(r"(1 + ", r"\frac{1}{31,557,600})^", r"{31,557,600t}", r" = 2.71...")
+        secondly[3].set_color(BLACK)
+        self.play(TransformMatchingTex(daily, secondly))
+        self.play(secondly[3].animate.set_color(WHITE))
+        self.play(FadeOut(secondly))
+        limitRules = MarkupText(f'As n increases infinitely, \ninterest given maxes out to <span fgcolor="{YELLOW}">~2.71</span>*r').shift(UP * 3)
+        limit = MathTex(r"(1 + \frac{r}{n})^{n}")
+        self.play(Write(limitRules), Succession(Wait(0.5), Write(limit)))
+        eDef = MathTex(r"\lim_{x\to\infty} (1 + \frac{1}{n})^{n} = e").scale(2)
+        self.play(FadeOut(limit), FadeOut(limitRules), Write(eDef), run_time = 3)
+        self.play(eDef.set_color_by_tex("infty", YELLOW))
+        cont_eq = Text("Pe^{rt}")
+        self.play(Transform(eDef, cont_eq))
 
 
 
@@ -158,3 +185,13 @@ class EulerFoundations(Scene):
 
 
         self.wait(2) #so that i can actually see the end of the animation oh my god 2: electric boogaloo
+
+class EInCalc(Scene):
+    def construct(self):
+        #together, we ARE calculus!!!!!!!
+        
+
+
+
+
+        self.wait(2)
