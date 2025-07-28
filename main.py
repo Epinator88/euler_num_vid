@@ -132,9 +132,24 @@ class IntroToE(Scene):
 class EulerFoundations(Scene):
 
     def construct(self):
-        euler = Text("e", font_size=720, color=WHITE)
+        euler = Text("e", font_size=360, color=WHITE)
         self.play(Write(euler))
-
+        self.wait(2)
+        self.play(Unwrite(euler))
+        blatant = Text("e comes from Interest", t2c={"Interest": YELLOW})
+        self.play(FadeIn(blatant))
+        barebones = MathTex(r"1", r"(1 + ", r"1", r")^", r"{t}")
+        self.play(FadeOut(blatant, scale = 0.1))
+        self.play(Write(barebones))
+        self.wait(1)
+        barebones2 = barebones.copy()
+        self.add(barebones2)
+        self.play(barebones2.animate.shift(UP * 3))
+        self.play(FadeOut(barebones[0]))
+        self.play(barebones.animate.center())
+        true = MathTex(r"2^t")
+        self.play(Transform(barebones, true))
+        self.play(FadeOut(barebones), )
 
 
 
