@@ -179,19 +179,48 @@ class EulerFoundations(Scene):
         self.play(Transform(eDef, cont_eq))
 
 
-
-
-
-
-
         self.wait(2) #so that i can actually see the end of the animation oh my god 2: electric boogaloo
 
 class EInCalc(Scene):
     def construct(self):
         #together, we ARE calculus!!!!!!!
+        e = Text("e", font_size=144)
+        self.play(Write(e))
+        self.play(FadeOut(e))
+        self.play(FadeIn(e))
+        calc = Text("Calculus")
+        calc.shift(UP * 3)
+        self.play(FadeIn(calc), FadeOut(e))
+        slope = MathTex(r"\frac{\Delta x}{\Delta y}")
+        deriv = MathTex(r"\frac{dx}{dy}")
+        self.play(FadeIn(slope))
+        self.play(Transform(slope, deriv))
+        self.play(FadeOut(slope))
+        #2
+        lim_half = MathTex(r"\sum_{n=1}^{\infty} \frac{1}{2^n} = ",r"\frac{1}{2}",r" + ",r"\frac{1}{4}",r" + ",r"\frac{1}{8}",r" + ",r"\frac{1}{16}",r" + ",r"\frac{1}{32}",r" + ",r"\cdots",r" = 1")
+        lim_half[1].color = BLUE
+        lim_half[3].color = YELLOW
+        lim_half[5].color = BLUE
+        lim_half[7].color = YELLOW
+        lim_half[9].color = BLUE
+        lim_half[11].color = YELLOW
+        line = NumberLine(x_range=[0, 1, 1], length=10, include_numbers=True, label_direction=DOWN).shift(DOWN * 2)
+        dot1 = Dot(point=line.n2p(1), radius = 0.1, color = YELLOW)
+        self.play(FadeIn(lim_half), FadeIn(line), FadeIn(dot1))
+        half = Line(line.n2p(0), line.n2p(0.5), color = BLUE)
+        quart = Line(line.n2p(0.5), line.n2p(0.75), color = YELLOW)
+        eight = Line(line.n2p(0.75), line.n2p(0.875), color = BLUE)
+        sixt = Line(line.n2p(0.875), line.n2p(0.9375), color = YELLOW)
+        thirt = Line(line.n2p(0.9375), line.n2p(0.96875), color = BLUE)
+        endl = Line(line.n2p(0.96875), line.n2p(1), color = YELLOW)
+        self.play(FadeIn(half))
+        self.play(FadeIn(quart))
+        self.play(FadeIn(eight))
+        self.play(FadeIn(sixt))
+        self.play(FadeIn(thirt))
+        self.play(FadeIn(endl))
+        #fuck
+        #3
         
-
-
-
 
         self.wait(2)
